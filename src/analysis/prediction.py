@@ -209,8 +209,8 @@ def run_gradient_boosting(
     feat_train = combined[combined["week_start"] <= cutoff].dropna()
     feat_test = combined[combined["week_start"] > cutoff].dropna()
 
-    feature_cols = [c for c in feat_train.columns if c.startswith(("lag_", "roll_", "month_", "week_", "district_"))]
-    feature_cols += ["year", "month_sin", "month_cos", "week_sin", "week_cos"]
+    feature_cols = [c for c in feat_train.columns if c.startswith(("lag_", "roll_", "district_"))]
+    feature_cols += ["year", "month", "week_of_year", "month_sin", "month_cos", "week_sin", "week_cos"]
     feature_cols = [c for c in feature_cols if c in feat_train.columns]
 
     X_train = feat_train[feature_cols].values
